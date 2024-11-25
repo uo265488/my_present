@@ -1,34 +1,39 @@
-name: CI/CD Pipeline
+name: Deploy to GitHub Pages
 
+# El flujo de trabajo se ejecuta cuando se hace un push a la rama main
 on:
   push:
     branches:
-      - main
+      - main  # Cambia esto si usas otra rama como 'master'
 
-build-and-deploy:
-    runs-on: ubuntu-latest
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Usa la última versión de Ubuntu para ejecutar el flujo de trabajo
 
     steps:
+    # Paso 1: Checkout del código
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # Paso 2: Configuración de Node.js (si tu proyecto lo necesita, de lo contrario omítelo)
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.18.1'  
+        node-version: '16'  # Cambia la versión si es necesario
 
+    # Paso 3: Instalación de dependencias (si usas npm o yarn, si no, omítelo)
     - name: Install dependencies
-      run: npm install
+      run: npm install  # Cambia esto si usas otro gestor de dependencias (por ejemplo, yarn)
 
-
+    # Paso 4: Construcción del proyecto (si es necesario para tu caso)
     - name: Build project
-      run: npm run build  
+      run: npm run build  # Cambia esto si tu proyecto usa otro comando para construir
 
-  
+    # Paso 5: Despliegue a GitHub Pages
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        branch: gh-pages 
-        folder: build    
+        branch: gh-pages   # Rama donde se desplegarán los archivos estáticos
+        folder: build      # La carpeta que contiene los archivos construidos (por ejemplo, build o dist)
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token predeterminado de GitHub para autenticar el despliegue
