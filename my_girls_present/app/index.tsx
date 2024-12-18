@@ -1,9 +1,13 @@
+// app/Index.tsx
 import React from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Button } from 'react-native-paper';
+import { useRouter } from 'expo-router';  // Hook para navegación
 
 export default function Index() {
-  const backImage = require('../assets/images/portada.jpg');
+  const router = useRouter(); // Hook para acceder a la navegación
+
+  const backImage = require('../assets/images/portada.jpg'); // Imagen de fondo
 
   const styles = StyleSheet.create({
     background: {
@@ -28,14 +32,14 @@ export default function Index() {
     >
       <View style={styles.container}>
         <Button
-          mode="text" 
-          onPress={() => alert('¡Botón presionado!')}
-          labelStyle={{ color: '#fff', fontWeight: 'bold' }} 
+          mode="text"
+          onPress={() => router.push("/MiriamCalendar")} 
+          labelStyle={{ color: '#fff', fontWeight: 'bold' }}
           style={{
-            backgroundColor: 'transparent', 
-            borderRadius: 25,  
-            borderWidth: 2, 
-            borderColor: '#fff', 
+            backgroundColor: 'transparent',
+            borderRadius: 25,
+            borderWidth: 2,
+            borderColor: '#fff',
           }}
         >
           Jejejejejeje ♡

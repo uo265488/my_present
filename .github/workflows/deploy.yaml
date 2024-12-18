@@ -11,15 +11,14 @@ jobs:
     runs-on: ubuntu-latest  # Usa la última versión de Ubuntu para ejecutar el flujo de trabajo
 
     steps:
-    # Paso 1: Checkout del código
+
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Paso 2: Configuración de Node.js (si tu proyecto lo necesita, de lo contrario omítelo)
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18.18.1'  # Cambia la versión si es necesario
+        node-version: '18.18.1'  
 
     # Paso 3: Instalación de dependencias (si usas npm o yarn, si no, omítelo)
     - name: Install dependencies
