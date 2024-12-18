@@ -1,98 +1,101 @@
-import clsx from "clsx";
-import {
-  eachDayOfInterval,
-  endOfMonth,
-  format,
-  getDay,
-  isToday,
-  startOfMonth,
-} from "date-fns";
-import { useMemo } from "react";
-
-const WEEKDAYS = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabadito", "Mimingo"];
-
-interface Event {
-  date: Date;
-  title: string;
-}
-
-interface EventCalendarProps {
-  events: Event[];
-}
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Calendar } from 'react-native-calendars';
+import { Linking } from 'react-native';
 
 const MiriamCalendar = () => {
-  const events: EventCalendarProps = { events: [] };
-  const currentDate = new Date();
-  const firstDayOfMonth = startOfMonth(currentDate);
-  const lastDayOfMonth = endOfMonth(currentDate);
 
-  const daysInMonth = eachDayOfInterval({
-    start: firstDayOfMonth,
-    end: lastDayOfMonth,
-  });
+  const handleDayPress = (day: any) => {
 
-  const startingDayIndex = getDay(firstDayOfMonth);
-
-  const eventsByDate = useMemo(() => {
-    return events.events.reduce((acc: { [key: string]: Event[] }, event) => {
-      const dateKey = format(event.date, "yyyy-MM-dd");
-      if (!acc[dateKey]) {
-        acc[dateKey] = [];
-      }
-      acc[dateKey].push(event);
-      return acc;
-    }, {});
-  }, [events]);
+    if (day.dateString >= '2024-12-07' && day.dateString <= '2024-12-09') { //BILBAO
+      Linking.openURL('https://www.instagram.com/p/DDcBZzAIJOQArQckAVby2keWTNYREBEJcMKkEA0/?igsh=bmg0cnd2dWlseG16')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString >= '2024-07-27' && day.dateString <= '2024-08-02') { //MALLORCA
+      Linking.openURL('https://www.instagram.com/p/C-50Q52oUUY-oxf_LTldsPU5oAnzNzydMnOlA80/?img_index=7&igsh=OHhwenFkdGMyZHc=')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString >= '2024-07-22' && day.dateString <= '2024-07-25') { //BOOMBASTIC
+      Linking.openURL('https://www.instagram.com/p/CvF3hkwoIzgMx_gPqYVg3yO45m_k7CCmuw4Grc0/?igsh=MTRtaGYyN2tlMzc3dA==')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString >= '2023-12-18' && day.dateString <= '2023-12-20') { // MILAN
+      Linking.openURL('https://www.instagram.com/p/C2YCcHcoBXb6dFSw4N8WhvlzOk6U_YKhUPJDMQ0/?img_index=1&igsh=MWEzdjUwNTU1cDV2Zw==')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString >= '2023-07-27' && day.dateString <= '2023-08-02') { //OPORTO
+      Linking.openURL('https://www.instagram.com/p/Cv5WpDeoL56HZA0NX39OMSQZfaJBFwQB8Un5h80/?igsh=MWViMnp5NXNxYjgyZg==')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString >= '2023-03-20' && day.dateString <= '2023-03-25') { //TENERIFE
+      Linking.openURL('https://www.instagram.com/p/CqQ7kYsoUn54q-0rEf3BI25n1Bxj0MrQEtJXz00/?igsh=MTVtOHBpeXFvOHRsZA==')
+        .catch(err => console.error('Failed to open URL:', err));
+    } else if (day.dateString == '2024-09-16') { //ANIVERSARIO
+      Linking.openURL('https://www.instagram.com/p/C-50Q52oUUY-oxf_LTldsPU5oAnzNzydMnOlA80/?img_index=7&igsh=OHhwenFkdGMyZHc=')
+        .catch(err => console.error('Failed to open URL:', err));
+    }
+  };
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="mb-4">
-        <h2 className="text-center">{format(currentDate, "MMMM yyyy")}</h2>
-      </div>
-      <div className="grid grid-cols-7 gap-2">
-        {WEEKDAYS.map((day) => {
-          return (
-            <div key={day} className="font-bold text-center">
-              {day}
-            </div>
-          );
-        })}
-        {Array.from({ length: startingDayIndex }).map((_, index) => {
-          return (
-            <div
-              key={`empty-${index}`}
-              className="border rounded-md p-2 text-center"
-            />
-          );
-        })}
-        {daysInMonth.map((day, index) => {
-          const dateKey = format(day, "yyyy-MM-dd");
-          const todaysEvents = eventsByDate[dateKey] || [];
-          return (
-            <div
-              key={index}
-              className={clsx("border rounded-md p-2 text-center", {
-                "bg-gray-200": isToday(day),
-                "text-gray-900": isToday(day),
-              })}
-            >
-              {format(day, "d")}
-              {todaysEvents.map((event) => {
-                return (
-                  <div
-                    key={event.title}
-                    className="bg-green-500 rounded-md text-gray-900"
-                  >
-                    {event.title}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <View style={styles.container}>
+      <Calendar
+        markedDates={{
+          '2024-12-07': { selected: true, marked: false, selectedColor: 'orange' },
+          '2024-12-08': { selected: true, marked: false, selectedColor: 'orange' },
+          '2024-12-09': { selected: true, marked: false, selectedColor: 'orange' },
+
+          '2023-12-20': { selected: true, marked: false, selectedColor: 'red' },
+          '2023-12-18': { selected: true, marked: false, selectedColor: 'red' },
+          '2023-12-19': { selected: true, marked: false, selectedColor: 'red' },
+
+          '2024-07-27': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-07-28': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-07-29': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-07-30': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-07-31': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-08-01': { selected: true, marked: false, selectedColor: 'green' },
+          '2024-08-02': { selected: true, marked: false, selectedColor: 'green' },
+
+          '2023-07-27': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-07-28': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-07-29': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-07-30': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-07-31': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-08-01': { selected: true, marked: false, selectedColor: 'green' },
+          '2023-08-02': { selected: true, marked: false, selectedColor: 'green' },
+
+          '2024-07-22': { selected: true, marked: false, selectedColor: 'orange' },
+          '2024-07-23': { selected: true, marked: false, selectedColor: 'orange' },
+          '2024-07-24': { selected: true, marked: false, selectedColor: 'orange' },
+          '2024-07-25': { selected: true, marked: false, selectedColor: 'orange' },
+
+          '2023-03-20': { selected: true, marked: false, selectedColor: 'purple' },
+          '2023-03-21': { selected: true, marked: false, selectedColor: 'purple' },
+          '2023-03-22': { selected: true, marked: false, selectedColor: 'purple' },
+          '2023-03-23': { selected: true, marked: false, selectedColor: 'purple' },
+          '2023-03-24': { selected: true, marked: false, selectedColor: 'purple' },
+          '2023-03-25': { selected: true, marked: false, selectedColor: 'purple' },
+
+          '2024-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+          '2023-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+          '2022-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+          
+
+          '2024-12-25': { selected: true, marked: false, selectedColor: 'blue' },
+          '2024-12-31': { selected: true, marked: false, selectedColor: 'red' },
+        }}
+        current={'2024-12-20'}
+        minDate={'2022-09-16'}
+        maxDate={'2024-12-31'}
+        onDayPress={handleDayPress}
+      />
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: 50,
+  },
+});
 
 export default MiriamCalendar;
