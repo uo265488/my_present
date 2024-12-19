@@ -27,7 +27,8 @@ jobs:
 
     # Paso 4: Construcción del proyecto (si es necesario para tu caso)
     - name: Build project
-      run: npm run build  # Cambia esto si tu proyecto usa otro comando para construir
+      run: npm run build
+      working-directory: ./my_girls_present
 
     # Paso 5: Despliegue a GitHub Pages
     - name: Deploy to GitHub Pages
