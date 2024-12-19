@@ -22,7 +22,8 @@ jobs:
 
     # Paso 3: Instalación de dependencias (si usas npm o yarn, si no, omítelo)
     - name: Install dependencies
-      run: npm install  # Cambia esto si usas otro gestor de dependencias (por ejemplo, yarn)
+      run: npm install  
+      working-directory: ./my_present
 
     # Paso 4: Construcción del proyecto (si es necesario para tu caso)
     - name: Build project
