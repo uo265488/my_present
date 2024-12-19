@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { Linking } from 'react-native';
 
 const MiriamCalendar = () => {
 
-  const handleDayPress = (day: any) => {
+  const tenerifeBeso = require('../assets/images/tenerife_beso.jpg');
 
+  const handleDayPress = (day: any) => {
     if (day.dateString >= '2024-12-07' && day.dateString <= '2024-12-09') { //BILBAO
       Linking.openURL('https://www.instagram.com/p/DDcBZzAIJOQArQckAVby2keWTNYREBEJcMKkEA0/?igsh=bmg0cnd2dWlseG16')
         .catch(err => console.error('Failed to open URL:', err));
@@ -33,68 +34,81 @@ const MiriamCalendar = () => {
 
   return (
     <View style={styles.container}>
-      <Calendar
-        markedDates={{
-          '2024-12-07': { selected: true, marked: false, selectedColor: 'orange' },
-          '2024-12-08': { selected: true, marked: false, selectedColor: 'orange' },
-          '2024-12-09': { selected: true, marked: false, selectedColor: 'orange' },
-
-          '2023-12-20': { selected: true, marked: false, selectedColor: 'red' },
-          '2023-12-18': { selected: true, marked: false, selectedColor: 'red' },
-          '2023-12-19': { selected: true, marked: false, selectedColor: 'red' },
-
-          '2024-07-27': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-07-28': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-07-29': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-07-30': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-07-31': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-08-01': { selected: true, marked: false, selectedColor: 'green' },
-          '2024-08-02': { selected: true, marked: false, selectedColor: 'green' },
-
-          '2023-07-27': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-07-28': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-07-29': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-07-30': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-07-31': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-08-01': { selected: true, marked: false, selectedColor: 'green' },
-          '2023-08-02': { selected: true, marked: false, selectedColor: 'green' },
-
-          '2024-07-22': { selected: true, marked: false, selectedColor: 'orange' },
-          '2024-07-23': { selected: true, marked: false, selectedColor: 'orange' },
-          '2024-07-24': { selected: true, marked: false, selectedColor: 'orange' },
-          '2024-07-25': { selected: true, marked: false, selectedColor: 'orange' },
-
-          '2023-03-20': { selected: true, marked: false, selectedColor: 'purple' },
-          '2023-03-21': { selected: true, marked: false, selectedColor: 'purple' },
-          '2023-03-22': { selected: true, marked: false, selectedColor: 'purple' },
-          '2023-03-23': { selected: true, marked: false, selectedColor: 'purple' },
-          '2023-03-24': { selected: true, marked: false, selectedColor: 'purple' },
-          '2023-03-25': { selected: true, marked: false, selectedColor: 'purple' },
-
-          '2024-09-16': { selected: true, marked: false, selectedColor: 'pink' },
-          '2023-09-16': { selected: true, marked: false, selectedColor: 'pink' },
-          '2022-09-16': { selected: true, marked: false, selectedColor: 'pink' },
-          
-
-          '2024-12-25': { selected: true, marked: false, selectedColor: 'blue' },
-          '2024-12-31': { selected: true, marked: false, selectedColor: 'red' },
-        }}
-        current={'2024-12-20'}
-        minDate={'2022-09-16'}
-        maxDate={'2024-12-31'}
-        onDayPress={handleDayPress}
-      />
+      <ImageBackground
+        source={tenerifeBeso}
+        style={styles.backgroundImage}
+        resizeMode="cover" // Ajusta la imagen de fondo para cubrir todo el espacio disponible
+      >
+        <View style={styles.calendarWrapper}>
+          <Calendar
+            markedDates={{
+              '2024-12-07': { selected: true, marked: false, selectedColor: 'orange' },
+              '2024-12-08': { selected: true, marked: false, selectedColor: 'orange' },
+              '2024-12-09': { selected: true, marked: false, selectedColor: 'orange' },
+              '2023-12-20': { selected: true, marked: false, selectedColor: 'red' },
+              '2023-12-18': { selected: true, marked: false, selectedColor: 'red' },
+              '2023-12-19': { selected: true, marked: false, selectedColor: 'red' },
+              '2024-07-27': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-07-28': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-07-29': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-07-30': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-07-31': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-08-01': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-08-02': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-07-27': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-07-28': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-07-29': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-07-30': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-07-31': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-08-01': { selected: true, marked: false, selectedColor: 'green' },
+              '2023-08-02': { selected: true, marked: false, selectedColor: 'green' },
+              '2024-07-22': { selected: true, marked: false, selectedColor: 'orange' },
+              '2024-07-23': { selected: true, marked: false, selectedColor: 'orange' },
+              '2024-07-24': { selected: true, marked: false, selectedColor: 'orange' },
+              '2024-07-25': { selected: true, marked: false, selectedColor: 'orange' },
+              '2023-03-20': { selected: true, marked: false, selectedColor: 'purple' },
+              '2023-03-21': { selected: true, marked: false, selectedColor: 'purple' },
+              '2023-03-22': { selected: true, marked: false, selectedColor: 'purple' },
+              '2023-03-23': { selected: true, marked: false, selectedColor: 'purple' },
+              '2023-03-24': { selected: true, marked: false, selectedColor: 'purple' },
+              '2023-03-25': { selected: true, marked: false, selectedColor: 'purple' },
+              '2024-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+              '2023-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+              '2022-09-16': { selected: true, marked: false, selectedColor: 'pink' },
+              '2024-12-25': { selected: true, marked: false, selectedColor: 'blue' },
+              '2024-12-31': { selected: true, marked: false, selectedColor: 'red' },
+            }}
+            current={'2024-12-20'}
+            minDate={'2022-09-16'}
+            maxDate={'2024-12-31'}
+            onDayPress={handleDayPress}
+          />
+        </View>
+      </ImageBackground>
     </View>
   );
 };
 
+// Estilos ajustados para centrar el calendario y ajustar la imagen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 50,
+  },
+  backgroundImage: {
+    flex: 1,
+    width: '100%', // Asegura que la imagen ocupe todo el ancho
+    height: '100%', // Asegura que la imagen ocupe toda la altura
+    justifyContent: 'center', // Centra el contenido (calendario) verticalmente
+  },
+  calendarWrapper: {
+    flex: 1, 
+    justifyContent: 'center', // Centra el calendario verticalmente
+    alignItems: 'center', // Centra el calendario horizontalmente
+    position: 'absolute', // Asegura que el calendario se posicione encima de la imagen
+    width: '85%', // El calendario ocupa el 85% del ancho de la pantalla
   },
 });
 
