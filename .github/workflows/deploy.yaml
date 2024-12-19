@@ -35,6 +35,6 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         branch: gh-pages   # Rama donde se desplegarán los archivos estáticos
-        folder: dist      # La carpeta que contiene los archivos construidos (por ejemplo, build o dist)
+        folder: ./my_girls_present/dist      # La carpeta que contiene los archivos construidos (por ejemplo, build o dist)
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token predeterminado de GitHub para autenticar el despliegue
