@@ -1,4 +1,5 @@
 {
+  "homepage": "https://uo265488.github.io/my_present",
   "name": "my_girls_present",
   "main": "expo-router/entry",
   "version": "1.0.0",
@@ -10,7 +11,8 @@
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint",
-    "build": "expo export"
+    "build": "expo export",
+    "deploy": "gh-pages -d dist"
   },
   "jest": {
     "preset": "jest-expo"
